@@ -1,7 +1,15 @@
-n = 5  # 總共的行數
-2space= '_'
-for i in range(n):  # 對於每一行
-    # 印出空格
-    print(2space * (n - i - 1), end='')  # 在每行前面印出空格
-    # 印出星號
-    print('*' * (2 * i + 1))  # 每行印出 2*i + 1 個星號
+'''
+Under ideal conditions a certain bacteria population is known to double every three hours.  
+Suppose that there are initially 100 bacteria. When will the population first reach 50,000 ? 
+'''
+import math
+
+# Given values
+P0 = 100  # initial population
+P_target = 50000  # target population
+T = 3  # doubling time in hours
+
+# Calculate the time when population reaches P_target
+t = T * math.log(P_target / P0, 2)
+
+print(f"The population will first reach {P_target} after {t:.2f} hours.")
