@@ -141,15 +141,68 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">HW 3 Exam << <a href='HW 3 Exam.html'>Previous</a> <a href='w6.html'>Next</a> >> w6<br /><h1>w5</h1>
-<p></p>
-<p><code></code></p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">height = 10
+    <div id="tipue_search_content">w11程式一 << <a href='w11程式一.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w11程式二</h1>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import math
 
-for i in range(height):
-    print('  ' * (height - i - 1) + '*' * (2 * i + 1))</pre>
-<p><code>          *<br/>         ***<br/>        *****<br/>       *******<br/>      *********<br/>     ***********<br/>    *************<br/>   ***************<br/>  *****************<br/> *******************</code><br/><br/></p>
-<br />HW 3 Exam << <a href='HW 3 Exam.html'>Previous</a> <a href='w6.html'>Next</a> >> w6</div>
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width = 400, height = 400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每一格的 pixel 數
+gs = 20
+
+# gs*tc = canvas width and height
+ctx = canvas.getContext("2d")
+
+def dRect(lux, luy, w, h, s=1, c='#ff0000'):
+    ctx.lineWidth = s
+    ctx.strokeStyle = c
+    ctx.beginPath();
+    ctx.rect(lux, luy, w, h)
+    ctx.stroke();
+    
+def grid(width, height, grid_pix):
+    # x 方向共 width 格
+    # y 方向共 height 格
+    # grid_pix, 每一個的 pixel 點數
+    # 利用迴圈與座標增量繪圖
+    for i in range(width):
+        for j in range(height):
+            dRect(i*grid_pix, j*grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+
+def fill(x, y, color):
+    ctx.fillStyle = color
+    ctx.fillRect(x-1, y-1, gs, gs)
+
+def draw_circle_in_grid(center_x, center_y, radius, grid_size):
+    # 遍歷每一個網格中心，判斷該網格是否位於圓內
+    for i in range(10):  # 10 格 x
+        for j in range(10):  # 10 格 y
+            # 計算每個格子的中心座標
+            grid_center_x = (i * grid_size) + grid_size / 2
+            grid_center_y = (j * grid_size) + grid_size / 2
+
+            # 計算此點是否在圓內
+            distance = math.sqrt((grid_center_x - center_x) ** 2 + (grid_center_y - center_y) ** 2)
+            
+            if distance &lt;= radius:
+                # 填滿圓內的格子
+                fill(i * grid_size, j * grid_size, "black")
+
+# 繪製背景格子
+grid(10, 10, gs)
+
+# 圓心位置與半徑
+center_x = 5 * gs  # 圓心 X 座標
+center_y = 5 * gs  # 圓心 Y 座標
+radius = 5 * gs  # 半徑
+
+# 在網格上繪製圓
+draw_circle_in_grid(center_x, center_y, radius, gs)</pre>
+<p></p><br />w11程式一 << <a href='w11程式一.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
     <!-- footer -->
       <div class="container">
