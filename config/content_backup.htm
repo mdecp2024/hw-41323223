@@ -57,15 +57,14 @@
 <div class="style-scope ytd-text-inline-expander" id="snippet"></div>
 <div class="style-scope ytd-watch-metadata" slot="extra-content"></div>
 <h3>w11</h3>
-<p>hw</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/H47N4wQp4Xg?si=P6z994XpndWUdSpt" title="YouTube video player" width="560"></iframe></p>
-<h3>程式一</h3>
+<p>hw<a href="https://www.youtube.com/watch?v=H47N4wQp4Xg">影片</a></p>
+<p>程式一</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import math
-
+ 
 n = 10  # 圓的寬度和高度
 center = (n // 2, n // 2)  # 圓心座標，這裡是 (5, 5)
 radius = n // 2  # 半徑為 5
-
+ 
 for y in range(n):  # 遍歷每一行
     for x in range(n):  # 遍歷每一列
         # 計算當前點 (x, y) 到圓心的距離
@@ -76,29 +75,39 @@ for y in range(n):  # 遍歷每一行
         else:
             print('　', end='')
     print()  # 換行</pre>
-<p></p><h3>w11程式二</h3>
+<p>說明:</p>
+<p></p>
+<ul>
+<li><code>n = 10</code> 代表圓的尺寸為 10x10。</li>
+<li><code>center = (n // 2, n // 2)</code> 設置圓心為 (5, 5)，這樣圓形會居中。</li>
+<li><code>radius = n // 2</code> 設置半徑為 5。</li>
+<li>程式遍歷每個點，計算每個點到圓心的距離，若距離接近半徑，則印出星號（<code>*</code>），否則印出空格（<code> </code>）。</li>
+</ul>
+<p></p>
+<p></p>
+<p>程式二</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
 from browser import document as doc
 import math
-
+ 
 # 利用 html 建立 canvas 超文件物件
 canvas = html.CANVAS(width = 400, height = 400)
 brython_div = doc["brython_div1"]
 brython_div &lt;= canvas
-
+ 
 # 每一格的 pixel 數
 gs = 20
-
+ 
 # gs*tc = canvas width and height
 ctx = canvas.getContext("2d")
-
+ 
 def dRect(lux, luy, w, h, s=1, c='#ff0000'):
     ctx.lineWidth = s
     ctx.strokeStyle = c
     ctx.beginPath();
     ctx.rect(lux, luy, w, h)
     ctx.stroke();
-    
+     
 def grid(width, height, grid_pix):
     # x 方向共 width 格
     # y 方向共 height 格
@@ -107,11 +116,11 @@ def grid(width, height, grid_pix):
     for i in range(width):
         for j in range(height):
             dRect(i*grid_pix, j*grid_pix, grid_pix, grid_pix, 1, "lightgrey")
-
+ 
 def fill(x, y, color):
     ctx.fillStyle = color
     ctx.fillRect(x-1, y-1, gs, gs)
-
+ 
 def draw_circle_in_grid(center_x, center_y, radius, grid_size):
     # 遍歷每一個網格中心，判斷該網格是否位於圓內
     for i in range(10):  # 10 格 x
@@ -119,24 +128,48 @@ def draw_circle_in_grid(center_x, center_y, radius, grid_size):
             # 計算每個格子的中心座標
             grid_center_x = (i * grid_size) + grid_size / 2
             grid_center_y = (j * grid_size) + grid_size / 2
-
+ 
             # 計算此點是否在圓內
             distance = math.sqrt((grid_center_x - center_x) ** 2 + (grid_center_y - center_y) ** 2)
-            
+             
             if distance &lt;= radius:
                 # 填滿圓內的格子
                 fill(i * grid_size, j * grid_size, "black")
-
+ 
 # 繪製背景格子
 grid(10, 10, gs)
-
+ 
 # 圓心位置與半徑
 center_x = 5 * gs  # 圓心 X 座標
 center_y = 5 * gs  # 圓心 Y 座標
 radius = 5 * gs  # 半徑
-
+ 
 # 在網格上繪製圓
 draw_circle_in_grid(center_x, center_y, radius, gs)</pre>
+<p>說明:</p>
+<p></p>
+<ul>
+<li><strong><code>draw_circle_in_grid</code> 函數</strong>：這個新函數會遍歷每個格子的中心，並計算該格子的中心點是否位於圓內。如果該點距圓心的距離小於或等於半徑，則填充該格子為黑色。</li>
+<li><strong>圓心和半徑設置</strong>：圓心設置為 <code>(5 * gs, 5 * gs)</code>，即圓心位於網格的中間位置，半徑為 <code>5 * gs</code>，這樣可以使圓形在 10x10 網格中顯示。</li>
+<li><strong>使用 <code>fill</code> 函數</strong>：當某個格子位於圓內時，我們用 <code>fill</code> 函數將該格子填充為黑色。</li>
+</ul>
+<p></p>
+<p></p>
+<p>11/27程式</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">n = 11
+space = '_'
+center = n//2
+#print (center)
+
+for y in range(n):
+    for x in range(n):
+        print("(", x, ", ",y, ")",sep="")</pre>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre><h3>w12</h3>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre>
 <p></p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
