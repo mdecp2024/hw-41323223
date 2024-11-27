@@ -251,7 +251,43 @@ for y in range(n):
         print("(", x, ", ",y, ")",sep="")</pre>
 <p></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre>
-<p></p>
+<p>11/27程式二</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width = 400, height = 400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每一格的 pixel 數
+gs = 20
+
+# gs*tc = canvas width and height
+
+ctx = canvas.getContext("2d")
+
+width = 11
+height = 11
+
+"""
+ctx.lineWidth  1
+ctx.strokeStyle='lightgrey'
+ctx.beginPath()
+#ctx.rect(i*gs,j*gs,gs,gs)
+ctx.rect(0,0,150,100)
+ctx.stroke()
+"""
+
+for i in range(width):
+    for j in range(height):
+        #dRect(i*gs, j*gs, gs, gs, 1, "lightgrey")
+        ctx.linewidth = 1
+        ctx.strokeStyle='lightgrey'
+        ctx.beginPath();
+        ctx.rect(i*gs,j*gs,gs,gs)
+        ctx.stroke();
+            </pre>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre><br />w10 << <a href='w10.html'>Previous</a> <a href='w12.html'>Next</a> >> w12</div>
         
     <!-- footer -->
