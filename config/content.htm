@@ -147,14 +147,11 @@ radius = 5 * gs  # 半徑
 # 在網格上繪製圓
 draw_circle_in_grid(center_x, center_y, radius, gs)</pre>
 <p>說明:</p>
-<p></p>
 <ul>
 <li><strong><code>draw_circle_in_grid</code> 函數</strong>：這個新函數會遍歷每個格子的中心，並計算該格子的中心點是否位於圓內。如果該點距圓心的距離小於或等於半徑，則填充該格子為黑色。</li>
 <li><strong>圓心和半徑設置</strong>：圓心設置為 <code>(5 * gs, 5 * gs)</code>，即圓心位於網格的中間位置，半徑為 <code>5 * gs</code>，這樣可以使圓形在 10x10 網格中顯示。</li>
 <li><strong>使用 <code>fill</code> 函數</strong>：當某個格子位於圓內時，我們用 <code>fill</code> 函數將該格子填充為黑色。</li>
 </ul>
-<p></p>
-<p></p>
 <p>11/27程式</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">n = 11
 space = '_'
@@ -164,8 +161,6 @@ center = n//2
 for y in range(n):
     for x in range(n):
         print("(", x, ", ",y, ")",sep="")</pre>
-<p></p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre>
 <p>11/27程式二</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
 from browser import document as doc
