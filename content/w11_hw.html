@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w7.html'>w7</a><li><a href='w10.html'>w10</a><li><a href='w11.html'>w11</a><li><a href='w12.html'>w12</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li class='has-children'><a href='HW 3 Exam.html'>HW 3 Exam</a><ul class='dropdown'><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a></li></li></ul></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w7.html'>w7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12_hw.html'>w12_hw</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li class='has-children'><a href='HW 3 Exam.html'>HW 3 Exam</a><ul class='dropdown'><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a></li></li></ul></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,10 +141,149 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w11 << <a href='w11.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w12</h1>
+    <div id="tipue_search_content">w10 << <a href='w10.html'>Previous</a> <a href='w12_hw.html'>Next</a> >> w12_hw<br /><h1>w11_hw</h1>
+<p>hw<a href="https://www.youtube.com/watch?v=H47N4wQp4Xg">影片</a></p>
+<p>程式一</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import math
+ 
+n = 10  # 圓的寬度和高度
+center = (n // 2, n // 2)  # 圓心座標，這裡是 (5, 5)
+radius = n // 2  # 半徑為 5
+ 
+for y in range(n):  # 遍歷每一行
+    for x in range(n):  # 遍歷每一列
+        # 計算當前點 (x, y) 到圓心的距離
+        distance = math.sqrt((x - center[0])**2 + (y - center[1])**2)
+        # 如果距離圓心的距離接近半徑，就在這個位置印出星號
+        if abs(distance - radius) &lt; 0.5:
+            print('＊', end='')
+        else:
+            print('　', end='')
+    print()  # 換行</pre>
+<p>說明:</p>
 <p></p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre>
-<p></p><br />w11 << <a href='w11.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+<ul>
+<li><code>n = 10</code> 代表圓的尺寸為 10x10。</li>
+<li><code>center = (n // 2, n // 2)</code> 設置圓心為 (5, 5)，這樣圓形會居中。</li>
+<li><code>radius = n // 2</code> 設置半徑為 5。</li>
+<li>程式遍歷每個點，計算每個點到圓心的距離，若距離接近半徑，則印出星號（<code>*</code>），否則印出空格（<code> </code>）。</li>
+</ul>
+<p></p>
+<p></p>
+<p>程式二</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import math
+ 
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width = 400, height = 400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+ 
+# 每一格的 pixel 數
+gs = 20
+ 
+# gs*tc = canvas width and height
+ctx = canvas.getContext("2d")
+ 
+def dRect(lux, luy, w, h, s=1, c='#ff0000'):
+    ctx.lineWidth = s
+    ctx.strokeStyle = c
+    ctx.beginPath();
+    ctx.rect(lux, luy, w, h)
+    ctx.stroke();
+     
+def grid(width, height, grid_pix):
+    # x 方向共 width 格
+    # y 方向共 height 格
+    # grid_pix, 每一個的 pixel 點數
+    # 利用迴圈與座標增量繪圖
+    for i in range(width):
+        for j in range(height):
+            dRect(i*grid_pix, j*grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+ 
+def fill(x, y, color):
+    ctx.fillStyle = color
+    ctx.fillRect(x-1, y-1, gs, gs)
+ 
+def draw_circle_in_grid(center_x, center_y, radius, grid_size):
+    # 遍歷每一個網格中心，判斷該網格是否位於圓內
+    for i in range(10):  # 10 格 x
+        for j in range(10):  # 10 格 y
+            # 計算每個格子的中心座標
+            grid_center_x = (i * grid_size) + grid_size / 2
+            grid_center_y = (j * grid_size) + grid_size / 2
+ 
+            # 計算此點是否在圓內
+            distance = math.sqrt((grid_center_x - center_x) ** 2 + (grid_center_y - center_y) ** 2)
+             
+            if distance &lt;= radius:
+                # 填滿圓內的格子
+                fill(i * grid_size, j * grid_size, "black")
+ 
+# 繪製背景格子
+grid(10, 10, gs)
+ 
+# 圓心位置與半徑
+center_x = 5 * gs  # 圓心 X 座標
+center_y = 5 * gs  # 圓心 Y 座標
+radius = 5 * gs  # 半徑
+ 
+# 在網格上繪製圓
+draw_circle_in_grid(center_x, center_y, radius, gs)</pre>
+<p>說明:</p>
+<ul>
+<li><strong><code>draw_circle_in_grid</code> 函數</strong>：這個新函數會遍歷每個格子的中心，並計算該格子的中心點是否位於圓內。如果該點距圓心的距離小於或等於半徑，則填充該格子為黑色。</li>
+<li><strong>圓心和半徑設置</strong>：圓心設置為 <code>(5 * gs, 5 * gs)</code>，即圓心位於網格的中間位置，半徑為 <code>5 * gs</code>，這樣可以使圓形在 10x10 網格中顯示。</li>
+<li><strong>使用 <code>fill</code> 函數</strong>：當某個格子位於圓內時，我們用 <code>fill</code> 函數將該格子填充為黑色。</li>
+</ul>
+<p>11/27程式</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">n = 11
+space = '_'
+center = n//2
+#print (center)
+ 
+for y in range(n):
+    for x in range(n):
+        print("(", x, ", ",y, ")",sep="")</pre>
+<p>11/27程式二</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width = 400, height = 400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每一格的 pixel 數
+gs = 20
+
+# gs*tc = canvas width and height
+
+ctx = canvas.getContext("2d")
+
+width = 11
+height = 11
+
+"""
+ctx.lineWidth  1
+ctx.strokeStyle='lightgrey'
+ctx.beginPath()
+#ctx.rect(i*gs,j*gs,gs,gs)
+ctx.rect(0,0,150,100)
+ctx.stroke()
+"""
+
+for i in range(width):
+    for j in range(height):
+        #dRect(i*gs, j*gs, gs, gs, 1, "lightgrey")
+        ctx.linewidth = 1
+        ctx.strokeStyle='lightgrey'
+        ctx.beginPath();
+        ctx.rect(i*gs,j*gs,gs,gs)
+        ctx.stroke();
+            </pre>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre><br />w10 << <a href='w10.html'>Previous</a> <a href='w12_hw.html'>Next</a> >> w12_hw</div>
         
     <!-- footer -->
       <div class="container">
